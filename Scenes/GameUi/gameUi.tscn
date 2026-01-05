@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj77drfictro0"]
+
+[ext_resource type="LabelSettings" uid="uid://es55d8btwcow" path="res://Resources/small_title_30.tres" id="1_k012w"]
+[ext_resource type="Script" uid="uid://dwtxovepu4mbd" path="res://Scenes/GameUi/gameUi.gd" id="1_v2c2j"]
+[ext_resource type="LabelSettings" uid="uid://dc8ehhmmy6j77" path="res://Resources/main_title_72.tres" id="2_v2c2j"]
+[ext_resource type="AudioStream" uid="uid://bp821cq4mc67q" path="res://assets/audio/score.wav" id="4_mgv25"]
+
+[node name="GameUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v2c2j")
+
+[node name="marginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="labelScore" type="Label" parent="marginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0000"
+label_settings = ExtResource("1_k012w")
+
+[node name="labelPressSpace" type="Label" parent="marginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press Space"
+label_settings = ExtResource("2_v2c2j")
+
+[node name="labelGameOver" type="Label" parent="marginContainer"]
+visible = false
+layout_mode = 2
+text = "Game Over"
+label_settings = ExtResource("2_v2c2j")
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mgv25")
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
